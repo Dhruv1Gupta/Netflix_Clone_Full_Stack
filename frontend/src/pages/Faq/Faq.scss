@@ -1,0 +1,59 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.faq-page {
+  max-width: 760px;
+  padding-block: v.$sp-7;
+}
+
+.faq-page__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  color: v.$color-text;
+}
+
+.faq-page__subtitle {
+  margin-top: v.$sp-2;
+  color: v.$color-text-muted;
+}
+
+.faq-list {
+  margin-top: v.$sp-6;
+  border-top: 1px solid v.$color-border;
+}
+
+.faq-item {
+  border-bottom: 1px solid v.$color-border;
+}
+
+.faq-item__question {
+  @include m.button-reset;
+  @include m.focus-ring;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$sp-4;
+  padding: v.$sp-5 v.$sp-2;
+  text-align: left;
+  font-size: v.$fs-md;
+  font-weight: 600;
+  color: v.$color-text;
+
+  &:hover {
+    color: v.$color-accent;
+  }
+}
+
+.faq-item__chevron {
+  flex: 0 0 auto;
+  font-size: v.$fs-lg;
+  color: v.$color-text-faint;
+}
+
+.faq-item__answer {
+  padding: 0 v.$sp-2 v.$sp-5;
+  color: v.$color-text-muted;
+  line-height: 1.7;
+  font-size: v.$fs-sm;
+}

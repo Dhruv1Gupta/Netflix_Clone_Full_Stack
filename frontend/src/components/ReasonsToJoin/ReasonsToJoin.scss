@@ -1,0 +1,115 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.reasons {
+  @include m.container;
+  padding-block: v.$sp-8;
+  border-top: 1px solid v.$color-border;
+}
+
+.reasons__head {
+  text-align: center;
+  max-width: 620px;
+  margin-inline: auto;
+  margin-bottom: v.$sp-7;
+}
+
+.reasons__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  letter-spacing: 0.01em;
+  color: v.$color-text;
+}
+
+.reasons__subtitle {
+  margin-top: v.$sp-2;
+  color: v.$color-text-muted;
+  font-size: v.$fs-md;
+}
+
+.reasons__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$sp-4;
+
+  @include m.bp-up(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include m.bp-up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.reasons__card {
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-lg;
+  padding: v.$sp-5;
+  transition: border-color v.$dur-base v.$ease-standard, transform v.$dur-base v.$ease-standard;
+
+  &:hover {
+    border-color: v.$color-accent;
+    transform: translateY(-2px);
+  }
+
+  h3 {
+    margin-top: v.$sp-3;
+    font-size: v.$fs-md;
+    color: v.$color-text;
+  }
+
+  p {
+    margin-top: v.$sp-2;
+    font-size: v.$fs-sm;
+    color: v.$color-text-muted;
+    line-height: 1.6;
+  }
+}
+
+.reasons__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: v.$radius-md;
+  background: v.$color-accent-muted;
+  color: v.$color-accent;
+}
+
+.reasons__actions {
+  margin-top: v.$sp-7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: v.$sp-3;
+}
+
+.reasons__cta {
+  @include m.focus-ring;
+  display: inline-block;
+  background: v.$color-accent;
+  color: #fff;
+  font-weight: 700;
+  font-size: v.$fs-md;
+  padding: v.$sp-3 v.$sp-7;
+  border-radius: v.$radius-sm;
+  text-decoration: none;
+  transition: background v.$dur-fast v.$ease-standard;
+
+  &:hover {
+    background: v.$color-accent-hover;
+  }
+}
+
+.reasons__faq-link {
+  @include m.focus-ring;
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+  text-decoration: none;
+
+  &:hover {
+    color: v.$color-text;
+    text-decoration: underline;
+  }
+}

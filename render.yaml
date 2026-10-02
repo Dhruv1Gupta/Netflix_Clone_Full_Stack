@@ -1,0 +1,30 @@
+# Render Blueprint: one-click deploy of the API (+ managed PostgreSQL).
+# Dashboard -> New -> Blueprint -> select this repo.
+services:
+  - type: web
+    name: netflix-clone-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: ./build.sh
+    startCommand: gunicorn config.wsgi:application
+    healthCheckPath: /api/health/
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: "False"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: netflix-clone-db
+          property: connectionString
+      # After deploying the frontend, set this to its URL (no trailing slash),
+      # e.g. https://your-app.vercel.app
+      - key: CORS_ALLOWED_ORIGINS
+        value: http://localhost:5173
+
+databases:
+  - name: netflix-clone-db
+    plan: free

@@ -1,0 +1,28 @@
+@use '../../styles/variables' as v;
+
+.empty-state {
+  text-align: center;
+  padding: v.$sp-9 v.$sp-4;
+  border: 1px dashed v.$color-border;
+  border-radius: v.$radius-lg;
+  max-width: 480px;
+  margin: v.$sp-6 auto;
+}
+
+.empty-state__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-xl;
+  letter-spacing: 0.02em;
+  color: v.$color-text;
+}
+
+.empty-state__desc {
+  margin-top: v.$sp-2;
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+  line-height: 1.6;
+}
+
+.empty-state__action {
+  margin-top: v.$sp-5;
+}

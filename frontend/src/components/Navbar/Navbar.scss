@@ -1,0 +1,417 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: v.$z-nav;
+  height: v.$nav-height;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+  transition: background v.$dur-base v.$ease-standard, border-color v.$dur-base v.$ease-standard;
+  border-bottom: 1px solid transparent;
+
+  &--solid {
+    background: rgba(11, 11, 13, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom-color: v.$color-border;
+  }
+}
+
+.navbar__inner {
+  @include m.container;
+  display: flex;
+  align-items: center;
+  gap: v.$sp-4;
+
+  @include m.bp-up(md) {
+    gap: v.$sp-6;
+  }
+}
+
+// ---- Hamburger (mobile only) ------------------------------------------
+.navbar__hamburger {
+  @include m.button-reset;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+
+  span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: v.$color-text;
+    border-radius: 2px;
+    transition: transform v.$dur-fast v.$ease-standard, opacity v.$dur-fast v.$ease-standard;
+  }
+
+  @include m.bp-up(md) {
+    display: none;
+  }
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: v.$sp-2;
+  color: v.$color-accent;
+  flex-shrink: 0;
+}
+
+.navbar__mark {
+  width: 22px;
+  height: 22px;
+}
+
+.navbar__wordmark {
+  font-family: v.$font-display;
+  font-size: v.$fs-lg;
+  letter-spacing: 0.03em;
+  color: v.$color-text;
+}
+
+// ---- Desktop-only nav + search (hidden below `md`, live in the sidebar instead) ----
+.navbar__links {
+  display: none;
+  gap: v.$sp-5;
+  font-size: v.$fs-sm;
+  color: v.$color-text-muted;
+
+  a {
+    transition: color v.$dur-fast v.$ease-standard;
+    &:hover {
+      color: v.$color-text;
+    }
+  }
+
+  @include m.bp-up(md) {
+    display: flex;
+  }
+}
+
+.navbar__search {
+  display: none;
+  margin-left: auto;
+  align-items: center;
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-pill;
+  padding: v.$sp-1 v.$sp-1 v.$sp-1 v.$sp-4;
+  max-width: 280px;
+  flex: 1;
+
+  @include m.bp-up(md) {
+    display: flex;
+  }
+
+  input {
+    flex: 1;
+    min-width: 0;
+    background: none;
+    border: none;
+    color: v.$color-text;
+    font-size: v.$fs-sm;
+    padding: v.$sp-2 0;
+
+    &::placeholder {
+      color: v.$color-text-faint;
+    }
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  button {
+    @include m.button-reset;
+    display: grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: v.$color-text-muted;
+
+    &:hover {
+      color: v.$color-text;
+    }
+  }
+
+  &:focus-within {
+    border-color: v.$color-accent;
+  }
+}
+
+// ---- Shared controls (theme toggle + auth), visible at every width ----
+.navbar__theme-toggle {
+  @include m.button-reset;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: v.$color-text-muted;
+  flex-shrink: 0;
+  margin-left: auto;
+
+  @include m.bp-up(md) {
+    margin-left: 0;
+  }
+
+  &:hover {
+    color: v.$color-text;
+    background: v.$color-surface-hover;
+  }
+}
+
+.navbar__auth {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.navbar__signin {
+  display: inline-block;
+  padding: v.$sp-2 v.$sp-4;
+  background: v.$color-accent;
+  color: #fff;
+  font-size: v.$fs-sm;
+  font-weight: 600;
+  border-radius: v.$radius-sm;
+  transition: background v.$dur-fast v.$ease-standard;
+
+  &:hover {
+    background: v.$color-accent-hover;
+  }
+}
+
+.navbar__avatar {
+  @include m.button-reset;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: v.$color-accent-muted;
+  color: v.$color-accent;
+  border: 1px solid v.$color-accent;
+  font-weight: 700;
+  font-size: v.$fs-sm;
+  display: grid;
+  place-items: center;
+}
+
+.navbar__menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + #{v.$sp-2});
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  padding: v.$sp-3;
+  min-width: 200px;
+  box-shadow: v.$shadow-card;
+  display: flex;
+  flex-direction: column;
+  gap: v.$sp-2;
+}
+
+.navbar__menu-email {
+  font-size: v.$fs-xs;
+  color: v.$color-text-muted;
+  padding: 0 v.$sp-2;
+  word-break: break-all;
+}
+
+.navbar__menu button {
+  @include m.button-reset;
+  text-align: left;
+  padding: v.$sp-2;
+  border-radius: v.$radius-sm;
+  font-size: v.$fs-sm;
+  color: v.$color-text;
+
+  &:hover {
+    background: v.$color-surface-hover;
+  }
+}
+
+// ============================================================
+// Mobile sidebar (off-canvas). Only ever reachable via the
+// hamburger, which itself is hidden at `md` and up, but we also
+// force-hide the panel there as a belt-and-braces safety net.
+// ============================================================
+.navbar-sidebar {
+  position: fixed;
+  inset: 0;
+  z-index: v.$z-modal;
+  visibility: hidden;
+  pointer-events: none;
+
+  @include m.bp-up(md) {
+    display: none;
+  }
+
+  &--open {
+    visibility: visible;
+    pointer-events: auto;
+
+    .navbar-sidebar__backdrop {
+      opacity: 1;
+    }
+    .navbar-sidebar__panel {
+      transform: translateX(0);
+    }
+  }
+}
+
+.navbar-sidebar__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transition: opacity v.$dur-base v.$ease-standard;
+  @include m.respect-motion;
+}
+
+.navbar-sidebar__panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: min(320px, 85vw);
+  background: v.$color-bg-raised;
+  border-right: 1px solid v.$color-border;
+  display: flex;
+  flex-direction: column;
+  padding: v.$sp-5;
+  transform: translateX(-100%);
+  transition: transform v.$dur-base v.$ease-standard;
+  overflow-y: auto;
+  @include m.respect-motion;
+}
+
+.navbar-sidebar__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-sidebar__close {
+  @include m.button-reset;
+  font-size: v.$fs-xl;
+  line-height: 1;
+  color: v.$color-text-muted;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+
+  &:hover {
+    color: v.$color-text;
+  }
+}
+
+.navbar-sidebar__search {
+  margin-top: v.$sp-6;
+
+  input {
+    width: 100%;
+    background: v.$color-surface;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-sm;
+    padding: v.$sp-3 v.$sp-4;
+    color: v.$color-text;
+    font-size: v.$fs-sm;
+
+    &::placeholder {
+      color: v.$color-text-faint;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: v.$color-accent;
+    }
+  }
+}
+
+.navbar-sidebar__links {
+  margin-top: v.$sp-6;
+  display: flex;
+  flex-direction: column;
+  gap: v.$sp-1;
+
+  a {
+    padding: v.$sp-3 v.$sp-2;
+    border-radius: v.$radius-sm;
+    font-size: v.$fs-md;
+    color: v.$color-text;
+
+    &:hover {
+      background: v.$color-surface;
+    }
+  }
+}
+
+.navbar-sidebar__footer {
+  margin-top: auto;
+  padding-top: v.$sp-6;
+  border-top: 1px solid v.$color-border;
+  display: flex;
+  flex-direction: column;
+  gap: v.$sp-3;
+}
+
+.navbar-sidebar__theme {
+  @include m.button-reset;
+  display: flex;
+  align-items: center;
+  gap: v.$sp-2;
+  padding: v.$sp-2;
+  border-radius: v.$radius-sm;
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+
+  &:hover {
+    background: v.$color-surface;
+    color: v.$color-text;
+  }
+}
+
+.navbar-sidebar__email {
+  font-size: v.$fs-xs;
+  color: v.$color-text-muted;
+  padding: 0 v.$sp-2;
+  word-break: break-all;
+}
+
+.navbar-sidebar__signout {
+  @include m.button-reset;
+  text-align: left;
+  padding: v.$sp-2;
+  border-radius: v.$radius-sm;
+  font-size: v.$fs-sm;
+  color: v.$color-danger;
+
+  &:hover {
+    background: v.$color-accent-muted;
+  }
+}
+
+.navbar-sidebar__signin {
+  display: block;
+  text-align: center;
+  padding: v.$sp-3;
+  background: v.$color-accent;
+  color: #fff;
+  font-weight: 600;
+  font-size: v.$fs-sm;
+  border-radius: v.$radius-sm;
+
+  &:hover {
+    background: v.$color-accent-hover;
+  }
+}

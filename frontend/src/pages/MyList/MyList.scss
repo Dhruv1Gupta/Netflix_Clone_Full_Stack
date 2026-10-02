@@ -1,0 +1,26 @@
+@use '../../styles/variables' as v;
+
+.my-list-page {
+  padding-top: calc(#{v.$nav-height} + #{v.$sp-6});
+}
+
+.my-list__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  letter-spacing: 0.01em;
+}
+
+.my-list__subtitle {
+  margin-top: v.$sp-2;
+  margin-bottom: v.$sp-6;
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+
+  span {
+    display: inline-block;
+    padding: 0 6px;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-sm;
+    font-weight: 700;
+  }
+}

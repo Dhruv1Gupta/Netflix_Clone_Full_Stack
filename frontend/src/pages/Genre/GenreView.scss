@@ -1,0 +1,15 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.genre-view__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$sp-4;
+  margin-bottom: v.$sp-6;
+
+  .home__search-title {
+    margin-bottom: 0;
+  }
+}

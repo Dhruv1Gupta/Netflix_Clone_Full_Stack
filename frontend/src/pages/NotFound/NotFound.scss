@@ -1,0 +1,46 @@
+@use '../../styles/variables' as v;
+
+.not-found {
+  padding-top: calc(#{v.$nav-height} + #{v.$sp-9});
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.not-found__code {
+  font-family: v.$font-display;
+  font-size: v.$fs-4xl;
+  color: v.$color-accent;
+  letter-spacing: 0.02em;
+}
+
+.not-found__title {
+  margin-top: v.$sp-3;
+  font-family: v.$font-display;
+  font-size: v.$fs-xl;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: v.$color-text;
+}
+
+.not-found__desc {
+  margin-top: v.$sp-2;
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+}
+
+.not-found__link {
+  margin-top: v.$sp-6;
+  display: inline-block;
+  padding: v.$sp-3 v.$sp-6;
+  background: v.$color-accent;
+  color: #fff;
+  font-weight: 600;
+  font-size: v.$fs-sm;
+  border-radius: v.$radius-sm;
+
+  &:hover {
+    background: v.$color-accent-hover;
+  }
+}

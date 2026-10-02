@@ -1,0 +1,29 @@
+@use '../../styles/variables' as v;
+
+.legal-page {
+  max-width: 720px;
+  padding-block: v.$sp-7;
+}
+
+.legal-page__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  color: v.$color-text;
+}
+
+.legal-page__intro {
+  margin-top: v.$sp-3;
+  padding: v.$sp-3 v.$sp-4;
+  border-left: 3px solid v.$color-gold;
+  background: v.$color-surface;
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+  border-radius: v.$radius-sm;
+}
+
+.legal-page__body {
+  margin-top: v.$sp-6;
+  color: v.$color-text-muted;
+  line-height: 1.75;
+  font-size: v.$fs-md;
+}

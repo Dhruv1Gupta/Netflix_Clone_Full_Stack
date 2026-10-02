@@ -1,0 +1,66 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.site-footer {
+  border-top: 1px solid v.$color-border;
+  margin-top: v.$sp-8;
+  background: v.$color-bg-raised;
+}
+
+.site-footer__inner {
+  @include m.container;
+  padding-block: v.$sp-7;
+}
+
+.site-footer__columns {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$sp-5;
+  padding-bottom: v.$sp-6;
+
+  @include m.bp-up(sm) {
+    grid-template-columns: repeat(3, minmax(140px, auto));
+  }
+}
+
+.site-footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: v.$sp-3;
+
+  a {
+    @include m.focus-ring;
+    color: v.$color-text-muted;
+    font-size: v.$fs-sm;
+    text-decoration: none;
+
+    &:hover {
+      color: v.$color-text;
+      text-decoration: underline;
+    }
+  }
+}
+
+.site-footer__language {
+  display: flex;
+  align-items: center;
+  gap: v.$sp-3;
+  padding-bottom: v.$sp-6;
+  color: v.$color-text-faint;
+  font-size: v.$fs-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.site-footer__disclaimer {
+  max-width: 640px;
+  font-size: v.$fs-xs;
+  color: v.$color-text-faint;
+  line-height: 1.6;
+}
+
+.site-footer__rights {
+  margin-top: v.$sp-3;
+  font-size: v.$fs-xs;
+  color: v.$color-text-faint;
+}

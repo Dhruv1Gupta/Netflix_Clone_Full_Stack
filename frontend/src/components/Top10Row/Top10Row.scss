@@ -1,0 +1,118 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.top10-row {
+  margin: v.$sp-7 0;
+}
+
+.top10-row__head {
+  @include m.container;
+  margin-bottom: v.$sp-4;
+}
+
+.top10-row__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-xl;
+  letter-spacing: 0.01em;
+  color: v.$color-text;
+}
+
+.top10-row__subtitle {
+  margin-top: v.$sp-1;
+  font-size: v.$fs-sm;
+  color: v.$color-text-faint;
+  max-width: 640px;
+}
+
+.top10-row__track {
+  display: flex;
+  gap: v.$sp-6;
+  overflow-x: auto;
+  padding: v.$sp-2 v.$sp-7 v.$sp-3 v.$sp-9;
+  @include m.hide-scrollbar;
+
+  @include m.bp-up(md) {
+    padding-left: v.$sp-9;
+  }
+}
+
+.top10-card {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: flex-end;
+  width: calc(v.$poster-w-sm * 1.55);
+  text-decoration: none;
+  @include m.focus-ring;
+}
+
+.top10-card__rank {
+  flex: 0 0 auto;
+  font-family: v.$font-display;
+  font-size: clamp(4.5rem, 9vw, 7rem);
+  line-height: 0.78;
+  color: transparent;
+  -webkit-text-stroke: 2px v.$color-text-faint;
+  letter-spacing: -0.04em;
+  margin-right: -0.35em;
+  z-index: 1;
+  transition: -webkit-text-stroke-color v.$dur-base v.$ease-standard;
+  user-select: none;
+}
+
+.top10-card:hover .top10-card__rank {
+  -webkit-text-stroke-color: v.$color-accent;
+}
+
+.top10-card__poster {
+  position: relative;
+  width: v.$poster-w-sm;
+  height: v.$poster-h-sm;
+  border-radius: v.$radius-md;
+  overflow: hidden;
+  box-shadow: v.$shadow-card;
+  flex: 0 0 auto;
+  transition: transform v.$dur-base v.$ease-standard;
+  background: v.$color-surface;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.top10-card:hover .top10-card__poster {
+  transform: translateY(-6px);
+}
+
+.top10-card__fallback {
+  width: 100%;
+  height: 100%;
+
+  @each $genre, $color in v.$genre-colors {
+    &--#{$genre} {
+      background: linear-gradient(160deg, #{$color}, rgba(0, 0, 0, 0.55));
+    }
+  }
+}
+
+.top10-card__title {
+  position: absolute;
+  left: v.$sp-2;
+  right: v.$sp-2;
+  bottom: v.$sp-2;
+  color: #fff;
+  font-size: v.$fs-xs;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  @include m.line-clamp(2);
+  opacity: 0;
+  transition: opacity v.$dur-fast v.$ease-standard;
+}
+
+.top10-card:hover .top10-card__title,
+.top10-card:focus-visible .top10-card__title {
+  opacity: 1;
+}

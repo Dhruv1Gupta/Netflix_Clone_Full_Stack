@@ -1,0 +1,107 @@
+// ============================================================
+// Design tokens
+// A cinematic, poster-driven palette: near-black stage, one
+// crimson accent used sparingly for action, warm gold reserved
+// only for "featured" signalling so it never competes with red.
+// ============================================================
+
+// ---- Color ----------------------------------------------------
+// These read from CSS custom properties (defined in _base.scss, with
+// dark defaults on :root and light overrides under
+// :root[data-theme="light"]) so the whole app can retheme at runtime
+// via ThemeContext without touching a single component file — every
+// v.$color-bg / v.$color-text / etc. reference below just becomes a
+// var(...) in the compiled CSS.
+$color-bg: var(--cv-bg);
+$color-bg-raised: var(--cv-bg-raised);
+$color-surface: var(--cv-surface);
+$color-surface-hover: var(--cv-surface-hover);
+$color-border: var(--cv-border);
+
+$color-text: var(--cv-text);
+$color-text-muted: var(--cv-text-muted);
+$color-text-faint: var(--cv-text-faint);
+
+$color-accent: #e63946;
+$color-accent-hover: #ff4d5a;
+$color-accent-muted: rgba(230, 57, 70, 0.16);
+
+$color-gold: #e8b04b;
+
+$color-success: #3ba55d;
+$color-danger: #e63946;
+
+// Genre → accent tint, used for placeholder poster art so movies
+// without a poster_url still read as distinct titles, not blanks.
+$genre-colors: (
+  'action': #b3282d,
+  'comedy': #d98e04,
+  'drama': #3a5a9b,
+  'horror': #4a1f1f,
+  'romance': #a8407a,
+  'sci-fi': #2a6f6f,
+  'thriller': #4b2e83,
+  'documentary': #2f6b3c,
+);
+
+// ---- Type -------------------------------------------------------
+// Display face for titles/hero/logo: condensed, poster-like.
+// Body/UI face: neutral, highly legible at small sizes.
+$font-display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+$font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+$fs-xs: 0.75rem; // 12
+$fs-sm: 0.875rem; // 14
+$fs-base: 1rem; // 16
+$fs-md: 1.125rem; // 18
+$fs-lg: 1.375rem; // 22
+$fs-xl: 1.75rem; // 28
+$fs-2xl: 2.5rem; // 40
+$fs-3xl: 3.5rem; // 56
+$fs-4xl: 5rem; // 80
+
+// ---- Spacing (4px base scale) -----------------------------------
+$sp-1: 0.25rem;
+$sp-2: 0.5rem;
+$sp-3: 0.75rem;
+$sp-4: 1rem;
+$sp-5: 1.5rem;
+$sp-6: 2rem;
+$sp-7: 3rem;
+$sp-8: 4rem;
+$sp-9: 6rem;
+
+// ---- Radius / shadow ----------------------------------------------
+$radius-sm: 3px;
+$radius-md: 6px;
+$radius-lg: 10px;
+$radius-pill: 999px;
+
+$shadow-card: 0 8px 24px rgba(0, 0, 0, 0.45);
+$shadow-modal: 0 20px 60px rgba(0, 0, 0, 0.6);
+
+// ---- Layout ---------------------------------------------------------
+$container-max: 1400px;
+$nav-height: 68px;
+$poster-w: 200px;
+$poster-h: 300px;
+$poster-w-sm: 150px;
+$poster-h-sm: 225px;
+
+// ---- Motion -----------------------------------------------------------
+$ease-standard: cubic-bezier(0.25, 0.8, 0.25, 1);
+$dur-fast: 150ms;
+$dur-base: 220ms;
+$dur-slow: 400ms;
+
+// ---- Z-index scale --------------------------------------------------
+$z-nav: 100;
+$z-overlay: 200;
+$z-modal: 300;
+$z-toast: 400;
+
+// ---- Breakpoints (used via mixins, see _mixins.scss) -----------------
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;

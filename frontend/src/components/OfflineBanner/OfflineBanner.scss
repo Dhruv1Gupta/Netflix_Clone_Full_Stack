@@ -1,0 +1,15 @@
+@use '../../styles/variables' as v;
+
+.offline-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: calc(#{v.$z-nav} + 1);
+  background: v.$color-danger;
+  color: #fff;
+  text-align: center;
+  font-size: v.$fs-xs;
+  font-weight: 600;
+  padding: 6px v.$sp-4;
+}

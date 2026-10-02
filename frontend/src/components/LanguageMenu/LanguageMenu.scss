@@ -1,0 +1,85 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.language-menu {
+  position: relative;
+}
+
+.language-menu__trigger {
+  @include m.button-reset;
+  @include m.focus-ring;
+  display: inline-flex;
+  align-items: center;
+  gap: v.$sp-1;
+  padding: v.$sp-1 v.$sp-2;
+  border-radius: v.$radius-sm;
+  color: v.$color-text-muted;
+  font-size: v.$fs-xs;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: color v.$dur-fast v.$ease-standard, background v.$dur-fast v.$ease-standard;
+
+  &:hover {
+    color: v.$color-text;
+    background: v.$color-surface-hover;
+  }
+}
+
+.language-menu--footer .language-menu__trigger {
+  border: 1px solid v.$color-border;
+  padding: v.$sp-2 v.$sp-3;
+  border-radius: v.$radius-sm;
+}
+
+.language-menu__list {
+  position: absolute;
+  top: calc(100% + v.$sp-2);
+  right: 0;
+  min-width: 160px;
+  background: v.$color-bg-raised;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+  box-shadow: v.$shadow-modal;
+  padding: v.$sp-2;
+  z-index: v.$z-overlay;
+  list-style: none;
+  max-height: 260px;
+  overflow-y: auto;
+
+  li button {
+    @include m.button-reset;
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: v.$sp-3;
+    padding: v.$sp-2 v.$sp-3;
+    border-radius: v.$radius-sm;
+    color: v.$color-text-muted;
+    font-size: v.$fs-sm;
+
+    &:hover {
+      background: v.$color-surface-hover;
+      color: v.$color-text;
+    }
+  }
+}
+
+.language-menu--footer .language-menu__list {
+  top: auto;
+  bottom: calc(100% + v.$sp-2);
+}
+
+.language-menu__native {
+  font-weight: 600;
+}
+
+.language-menu__label {
+  color: v.$color-text-faint;
+  font-size: v.$fs-xs;
+}
+
+.language-menu__item--active {
+  color: v.$color-text !important;
+  background: v.$color-accent-muted;
+}

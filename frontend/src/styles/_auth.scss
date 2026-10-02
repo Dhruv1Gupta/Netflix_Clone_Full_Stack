@@ -1,0 +1,144 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(#{v.$nav-height} + #{v.$sp-6}) v.$sp-4 v.$sp-8;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(80% 60% at 50% 0%, #241417 0%, v.$color-bg 70%);
+    z-index: -1;
+  }
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(22, 22, 26, 0.9);
+  border: 1px solid v.$color-border;
+  border-top: 3px solid v.$color-accent;
+  border-radius: v.$radius-lg;
+  padding: v.$sp-7 v.$sp-6;
+}
+
+.auth-card__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  letter-spacing: 0.01em;
+  color: v.$color-text;
+}
+
+.auth-card__subtitle {
+  margin-top: v.$sp-2;
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+}
+
+.auth-form {
+  margin-top: v.$sp-6;
+  display: flex;
+  flex-direction: column;
+  gap: v.$sp-4;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: v.$sp-2;
+}
+
+.auth-field label {
+  font-size: v.$fs-xs;
+  color: v.$color-text-muted;
+  letter-spacing: 0.02em;
+}
+
+.auth-field input {
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  padding: v.$sp-3 v.$sp-4;
+  color: v.$color-text;
+  font-size: v.$fs-base;
+  transition: border-color v.$dur-fast v.$ease-standard;
+
+  &::placeholder {
+    color: v.$color-text-faint;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: v.$color-accent;
+  }
+}
+
+.auth-field--error input {
+  border-color: v.$color-danger;
+}
+
+.auth-field__hint {
+  font-size: v.$fs-xs;
+  color: v.$color-text-faint;
+}
+
+.auth-form__error {
+  background: v.$color-accent-muted;
+  border: 1px solid v.$color-danger;
+  border-radius: v.$radius-sm;
+  padding: v.$sp-3 v.$sp-4;
+  font-size: v.$fs-sm;
+  color: #ffb3b8;
+}
+
+.auth-submit {
+  @include m.button-reset;
+  margin-top: v.$sp-2;
+  padding: v.$sp-3;
+  background: v.$color-accent;
+  color: #fff;
+  font-weight: 700;
+  border-radius: v.$radius-sm;
+  text-align: center;
+  transition: background v.$dur-fast v.$ease-standard, opacity v.$dur-fast v.$ease-standard;
+
+  &:hover:not(:disabled) {
+    background: v.$color-accent-hover;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.auth-card__footer {
+  margin-top: v.$sp-6;
+  font-size: v.$fs-sm;
+  color: v.$color-text-muted;
+
+  a {
+    color: v.$color-text;
+    font-weight: 600;
+
+    &:hover {
+      color: v.$color-accent-hover;
+    }
+  }
+}
+
+.auth-card__hint-box {
+  margin-top: v.$sp-5;
+  padding: v.$sp-3 v.$sp-4;
+  background: v.$color-surface;
+  border-radius: v.$radius-sm;
+  font-size: v.$fs-xs;
+  color: v.$color-text-faint;
+  line-height: 1.6;
+}

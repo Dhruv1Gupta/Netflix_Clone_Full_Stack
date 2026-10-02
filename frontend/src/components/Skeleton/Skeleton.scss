@@ -1,0 +1,63 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.skeleton-rows {
+  padding-top: calc(#{v.$nav-height} + #{v.$sp-6});
+}
+
+.skeleton-row {
+  margin-bottom: v.$sp-7;
+}
+
+.skeleton-row__cards {
+  display: flex;
+  gap: v.$sp-3;
+  overflow: hidden;
+  padding-inline: v.$sp-4;
+
+  @include m.bp-up(md) {
+    padding-inline: v.$sp-7;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    100deg,
+    v.$color-surface 30%,
+    v.$color-surface-hover 50%,
+    v.$color-surface 70%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+  border-radius: v.$radius-sm;
+  @include m.respect-motion;
+
+  &--title {
+    width: 160px;
+    height: v.$fs-lg;
+    margin: 0 v.$sp-4 v.$sp-3;
+
+    @include m.bp-up(md) {
+      margin-inline: v.$sp-7;
+    }
+  }
+
+  &--poster {
+    flex: 0 0 auto;
+    width: v.$poster-w-sm;
+    aspect-ratio: 2 / 3;
+
+    @include m.bp-up(md) {
+      width: v.$poster-w;
+    }
+  }
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}

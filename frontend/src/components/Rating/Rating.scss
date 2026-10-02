@@ -1,0 +1,34 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: v.$sp-3;
+}
+
+.rating__stars {
+  display: flex;
+  gap: 2px;
+}
+
+.rating__star {
+  @include m.button-reset;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: v.$color-border;
+  transition: color v.$dur-fast v.$ease-standard, transform v.$dur-fast v.$ease-standard;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &--filled {
+    color: v.$color-gold;
+  }
+}
+
+.rating__label {
+  font-size: v.$fs-xs;
+  color: v.$color-text-muted;
+}

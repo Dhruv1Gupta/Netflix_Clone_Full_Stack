@@ -1,0 +1,55 @@
+@use '../../styles/variables' as v;
+
+.contact-page {
+  max-width: 620px;
+  padding-block: v.$sp-7;
+}
+
+.contact-page__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  color: v.$color-text;
+}
+
+.contact-page__subtitle {
+  margin-top: v.$sp-2;
+  color: v.$color-text-muted;
+}
+
+.contact-page__list {
+  margin-top: v.$sp-6;
+  list-style: none;
+  border-top: 1px solid v.$color-border;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: v.$sp-4 0;
+    border-bottom: 1px solid v.$color-border;
+
+    span {
+      color: v.$color-text-faint;
+      font-size: v.$fs-sm;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    a {
+      color: v.$color-text;
+      font-weight: 600;
+      text-decoration: none;
+
+      &:hover {
+        color: v.$color-accent;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.contact-page__note {
+  margin-top: v.$sp-5;
+  font-size: v.$fs-xs;
+  color: v.$color-text-faint;
+}

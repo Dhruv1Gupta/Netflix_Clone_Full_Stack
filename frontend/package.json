@@ -1,0 +1,23 @@
+{
+  "name": "netflix-clone-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "React + SCSS frontend for the Netflix Clone Django REST API (auth, movie browsing, admin CRUD).",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.18.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.1",
+    "sass": "^1.83.4",
+    "vite": "^8.3.1"
+  }
+}

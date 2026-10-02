@@ -1,0 +1,154 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+// ---- Theme tokens --------------------------------------------------
+// Dark is the default (and matches the brand), light is opt-in via
+// ThemeContext setting data-theme="light" on <html>. Accent/gold stay
+// constant across themes by design — only surfaces and text flip.
+:root {
+  color-scheme: dark;
+
+  --cv-bg: #0b0b0d;
+  --cv-bg-raised: #16161a;
+  --cv-surface: #1c1c21;
+  --cv-surface-hover: #26262c;
+  --cv-border: #2c2c33;
+
+  --cv-text: #f5f5f1;
+  --cv-text-muted: #9a9aa2;
+  --cv-text-faint: #6a6a72;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --cv-bg: #f7f7f5;
+  --cv-bg-raised: #ffffff;
+  --cv-surface: #ececea;
+  --cv-surface-hover: #e1e1dd;
+  --cv-border: #d8d8d3;
+
+  --cv-text: #17171a;
+  --cv-text-muted: #55555c;
+  --cv-text-faint: #86868c;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: v.$color-bg;
+  color: v.$color-text;
+  font-family: v.$font-body;
+  font-size: v.$fs-base;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-weight: 400;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+::selection {
+  background: v.$color-accent;
+  color: #fff;
+}
+
+// visible keyboard focus everywhere by default
+:focus-visible {
+  outline: 2px solid v.$color-accent-hover;
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+// Visually hidden until focused (keyboard users tabbing from the address
+// bar land here first, letting them jump past the navbar).
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: v.$sp-4;
+  z-index: calc(#{v.$z-modal} + 10);
+  background: v.$color-accent;
+  color: #fff;
+  padding: v.$sp-3 v.$sp-5;
+  border-radius: v.$radius-sm;
+  font-size: v.$fs-sm;
+  font-weight: 600;
+  transition: top v.$dur-fast v.$ease-standard;
+
+  &:focus-visible {
+    top: v.$sp-4;
+  }
+}
+
+.app-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.page {
+  @include m.container;
+  padding-top: v.$sp-7;
+  padding-bottom: v.$sp-8;
+  width: 100%;
+}

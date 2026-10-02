@@ -1,0 +1,125 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.home__toolbar {
+  position: relative;
+  z-index: 1;
+  padding-top: v.$sp-2;
+
+  &--search {
+    padding-top: calc(#{v.$nav-height} + #{v.$sp-6});
+  }
+}
+
+.home__toolbar-inner {
+  @include m.container;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$sp-3;
+  padding-bottom: v.$sp-4;
+}
+
+.home__genre-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$sp-2;
+  overflow-x: auto;
+  @include m.hide-scrollbar;
+}
+
+.home__pill {
+  @include m.button-reset;
+  padding: v.$sp-2 v.$sp-4;
+  border-radius: v.$radius-pill;
+  border: 1px solid v.$color-border;
+  color: v.$color-text-muted;
+  font-size: v.$fs-xs;
+  white-space: nowrap;
+  transition: background v.$dur-fast v.$ease-standard, color v.$dur-fast v.$ease-standard,
+    border-color v.$dur-fast v.$ease-standard;
+
+  &:hover {
+    color: v.$color-text;
+    border-color: v.$color-text-muted;
+  }
+
+  &--active {
+    background: v.$color-accent;
+    border-color: v.$color-accent;
+    color: #fff;
+  }
+}
+
+.home__toolbar-actions {
+  display: flex;
+  align-items: center;
+  gap: v.$sp-3;
+  flex-shrink: 0;
+}
+
+.home__sort {
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  color: v.$color-text;
+  font-size: v.$fs-xs;
+  padding: v.$sp-2 v.$sp-3;
+
+  &:focus {
+    outline: none;
+    border-color: v.$color-accent;
+  }
+}
+
+.home__clear,
+.home__shuffle {
+  @include m.button-reset;
+  padding: v.$sp-2 v.$sp-3;
+  border-radius: v.$radius-sm;
+  border: 1px solid v.$color-border;
+  color: v.$color-text-muted;
+  font-size: v.$fs-xs;
+  white-space: nowrap;
+
+  &:hover {
+    color: v.$color-text;
+  }
+}
+
+.home__rows {
+  padding-top: v.$sp-2;
+  padding-bottom: v.$sp-7;
+}
+
+.home--search {
+  padding-top: calc(#{v.$nav-height} + #{v.$sp-6});
+}
+
+.home__search-title {
+  font-family: v.$font-display;
+  font-size: v.$fs-xl;
+  letter-spacing: 0.01em;
+  margin-bottom: v.$sp-6;
+}
+
+.home__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: v.$sp-4;
+
+  @include m.bp-up(sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include m.bp-up(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  @include m.bp-up(lg) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .movie-card {
+    width: 100%;
+  }
+}

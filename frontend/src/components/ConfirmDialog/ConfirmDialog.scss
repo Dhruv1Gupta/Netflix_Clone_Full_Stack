@@ -1,0 +1,94 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.confirm-dialog__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: v.$z-modal;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: v.$sp-4;
+  animation: fade-in v.$dur-fast v.$ease-standard;
+}
+
+.confirm-dialog {
+  width: 100%;
+  max-width: 420px;
+  background: v.$color-bg-raised;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-lg;
+  padding: v.$sp-6;
+  box-shadow: v.$shadow-modal;
+}
+
+.confirm-dialog__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-xl;
+  letter-spacing: 0.01em;
+  color: v.$color-text;
+}
+
+.confirm-dialog__desc {
+  margin-top: v.$sp-3;
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+  line-height: 1.6;
+}
+
+.confirm-dialog__actions {
+  margin-top: v.$sp-6;
+  display: flex;
+  justify-content: flex-end;
+  gap: v.$sp-3;
+}
+
+.confirm-dialog__btn {
+  @include m.button-reset;
+  padding: v.$sp-2 v.$sp-5;
+  border-radius: v.$radius-sm;
+  font-size: v.$fs-sm;
+  font-weight: 600;
+  border: 1px solid v.$color-border;
+  color: v.$color-text-muted;
+  transition: background v.$dur-fast v.$ease-standard, color v.$dur-fast v.$ease-standard;
+
+  &:hover:not(:disabled) {
+    color: v.$color-text;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  &--primary {
+    background: v.$color-text;
+    color: v.$color-bg;
+    border-color: v.$color-text;
+
+    &:hover:not(:disabled) {
+      background: #d8d8d3;
+    }
+  }
+
+  &--danger {
+    background: v.$color-danger;
+    color: #fff;
+    border-color: v.$color-danger;
+
+    &:hover:not(:disabled) {
+      background: v.$color-accent-hover;
+    }
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,184 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.admin-page {
+  padding-top: calc(#{v.$nav-height} + #{v.$sp-6});
+}
+
+.admin-page__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: v.$sp-4;
+}
+
+.admin-page__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  letter-spacing: 0.01em;
+}
+
+.admin-page__subtitle {
+  margin-top: v.$sp-1;
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+}
+
+.admin-page__header-actions {
+  display: flex;
+  gap: v.$sp-3;
+  flex-shrink: 0;
+}
+
+.admin-page__export-btn {
+  @include m.button-reset;
+  display: inline-flex;
+  align-items: center;
+  padding: v.$sp-3 v.$sp-5;
+  background: transparent;
+  border: 1px solid v.$color-border;
+  color: v.$color-text-muted;
+  font-weight: 600;
+  font-size: v.$fs-sm;
+  border-radius: v.$radius-sm;
+
+  &:hover:not(:disabled) {
+    color: v.$color-text;
+    border-color: v.$color-text-muted;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.admin-page__add-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: v.$sp-3 v.$sp-5;
+  background: v.$color-accent;
+  color: #fff;
+  font-weight: 600;
+  font-size: v.$fs-sm;
+  border-radius: v.$radius-sm;
+
+  &:hover {
+    background: v.$color-accent-hover;
+  }
+}
+
+.admin-page__search {
+  margin-top: v.$sp-5;
+  width: 100%;
+  max-width: 320px;
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  padding: v.$sp-3 v.$sp-4;
+  color: v.$color-text;
+  font-size: v.$fs-sm;
+
+  &::placeholder {
+    color: v.$color-text-faint;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: v.$color-accent;
+  }
+}
+
+.admin-table__wrap {
+  margin-top: v.$sp-5;
+  overflow-x: auto;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-md;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: v.$fs-sm;
+  min-width: 640px;
+
+  th,
+  td {
+    padding: v.$sp-3 v.$sp-4;
+    text-align: left;
+    border-bottom: 1px solid v.$color-border;
+    white-space: nowrap;
+  }
+
+  th {
+    color: v.$color-text-muted;
+    font-weight: 600;
+    font-size: v.$fs-xs;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: v.$color-bg-raised;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:hover {
+    background: v.$color-surface;
+  }
+}
+
+.admin-table__thumb-cell {
+  width: 48px;
+}
+
+.admin-table__thumb {
+  width: 36px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: v.$radius-sm;
+  background: v.$color-surface-hover;
+
+  &--blank {
+    background: v.$color-surface-hover;
+  }
+}
+
+.admin-table__title-link {
+  font-weight: 600;
+  color: v.$color-text;
+
+  &:hover {
+    color: v.$color-accent-hover;
+  }
+}
+
+.admin-table__yes {
+  color: v.$color-gold;
+  font-weight: 600;
+}
+
+.admin-table__actions {
+  display: flex;
+  gap: v.$sp-2;
+}
+
+.admin-table__btn {
+  @include m.button-reset;
+  padding: v.$sp-1 v.$sp-3;
+  border-radius: v.$radius-sm;
+  border: 1px solid v.$color-border;
+  color: v.$color-text-muted;
+  font-size: v.$fs-xs;
+  font-weight: 600;
+
+  &:hover {
+    color: v.$color-text;
+  }
+
+  &--danger:hover {
+    color: v.$color-danger;
+    border-color: v.$color-danger;
+  }
+}

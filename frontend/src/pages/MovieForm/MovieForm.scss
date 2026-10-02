@@ -1,0 +1,260 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.movie-form-page {
+  padding-top: calc(#{v.$nav-height} + #{v.$sp-6});
+  max-width: 640px;
+}
+
+.movie-form__title {
+  font-family: v.$font-display;
+  font-size: v.$fs-2xl;
+  letter-spacing: 0.01em;
+}
+
+.movie-form__subtitle {
+  margin-top: v.$sp-2;
+  color: v.$color-text-muted;
+  font-size: v.$fs-sm;
+  max-width: 56ch;
+}
+
+.movie-form {
+  margin-top: v.$sp-6;
+  display: flex;
+  flex-direction: column;
+  gap: v.$sp-5;
+}
+
+.movie-form__error {
+  background: v.$color-accent-muted;
+  border: 1px solid v.$color-danger;
+  border-radius: v.$radius-sm;
+  padding: v.$sp-3 v.$sp-4;
+  font-size: v.$fs-sm;
+  color: #ffb3b8;
+}
+
+.movie-form__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$sp-5;
+
+  @include m.bp-up(sm) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.movie-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: v.$sp-2;
+
+  label {
+    font-size: v.$fs-xs;
+    color: v.$color-text-muted;
+    letter-spacing: 0.02em;
+  }
+
+  input,
+  textarea,
+  select {
+    background: v.$color-surface;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-sm;
+    padding: v.$sp-3 v.$sp-4;
+    color: v.$color-text;
+    font-size: v.$fs-base;
+    resize: vertical;
+    transition: border-color v.$dur-fast v.$ease-standard;
+
+    &::placeholder {
+      color: v.$color-text-faint;
+    }
+
+    &:focus {
+      outline: none;
+      border-color: v.$color-accent;
+    }
+  }
+
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%239a9aa2'%3E%3Cpath d='M5.5 7.5 10 12l4.5-4.5' stroke='%239a9aa2' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right v.$sp-4 center;
+    padding-right: v.$sp-8;
+  }
+
+  &--error {
+    input,
+    textarea,
+    select {
+      border-color: v.$color-danger;
+    }
+  }
+}
+
+.movie-form__hint {
+  font-size: v.$fs-xs;
+  color: #ff9aa2;
+
+  &--muted {
+    color: v.$color-text-faint;
+  }
+}
+
+.movie-form__checkbox {
+  display: flex;
+  align-items: center;
+  gap: v.$sp-3;
+  font-size: v.$fs-sm;
+  color: v.$color-text;
+  cursor: pointer;
+
+  input {
+    width: 18px;
+    height: 18px;
+    accent-color: v.$color-accent;
+  }
+}
+
+.movie-form__actions {
+  margin-top: v.$sp-3;
+  display: flex;
+  gap: v.$sp-3;
+}
+
+.movie-form__btn {
+  @include m.button-reset;
+  padding: v.$sp-3 v.$sp-6;
+  border-radius: v.$radius-sm;
+  font-size: v.$fs-sm;
+  font-weight: 600;
+  transition: background v.$dur-fast v.$ease-standard, opacity v.$dur-fast v.$ease-standard;
+
+  &--primary {
+    background: v.$color-accent;
+    color: #fff;
+
+    &:hover:not(:disabled) {
+      background: v.$color-accent-hover;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    border: 1px solid v.$color-border;
+    color: v.$color-text-muted;
+
+    &:hover {
+      color: v.$color-text;
+    }
+  }
+}
+
+// ---- Trailer management (edit mode) --------------------------------------
+.movie-form__trailers {
+  margin: v.$sp-7 0 v.$sp-6;
+  padding-top: v.$sp-6;
+  border-top: 1px solid v.$color-border;
+}
+
+.movie-form__trailers-title {
+  font-family: v.$font-display;
+  font-size: v.$fs-lg;
+  color: v.$color-text;
+}
+
+.movie-form__trailers-hint {
+  margin-top: v.$sp-2;
+  font-size: v.$fs-xs;
+  color: v.$color-text-faint;
+  max-width: 60ch;
+}
+
+.movie-form__trailer-list {
+  margin-top: v.$sp-4;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: v.$sp-2;
+
+  li {
+    display: flex;
+    align-items: center;
+    gap: v.$sp-3;
+    padding: v.$sp-2 v.$sp-3;
+    background: v.$color-surface;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-sm;
+    font-size: v.$fs-sm;
+  }
+}
+
+.movie-form__trailer-lang {
+  font-weight: 700;
+  color: v.$color-text;
+  min-width: 5.5em;
+}
+
+.movie-form__trailer-id {
+  color: v.$color-text-faint;
+  font-family: monospace;
+  font-size: v.$fs-xs;
+}
+
+.movie-form__trailer-label {
+  color: v.$color-text-muted;
+  flex: 1;
+}
+
+.movie-form__trailer-remove {
+  @include m.button-reset;
+  @include m.focus-ring;
+  margin-left: auto;
+  color: v.$color-danger;
+  font-size: v.$fs-xs;
+  font-weight: 600;
+  padding: v.$sp-1 v.$sp-2;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.movie-form__trailer-add {
+  margin-top: v.$sp-4;
+}
+
+.movie-form__trailer-add-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$sp-3;
+
+  @include m.bp-up(md) {
+    grid-template-columns: 140px 1fr 1fr auto;
+    align-items: center;
+  }
+
+  select,
+  input {
+    background: v.$color-surface;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-sm;
+    padding: v.$sp-3;
+    color: v.$color-text;
+    font-size: v.$fs-sm;
+    font-family: v.$font-body;
+
+    &:focus-visible {
+      outline: 2px solid v.$color-accent-hover;
+      outline-offset: 1px;
+    }
+  }
+}

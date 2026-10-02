@@ -1,0 +1,37 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.back-to-top {
+  @include m.button-reset;
+  position: fixed;
+  right: v.$sp-4;
+  bottom: v.$sp-4;
+  z-index: v.$z-nav;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  color: v.$color-text;
+  display: grid;
+  place-items: center;
+  box-shadow: v.$shadow-card;
+  animation: back-to-top-in v.$dur-base v.$ease-standard;
+  @include m.respect-motion;
+
+  &:hover {
+    background: v.$color-accent;
+    border-color: v.$color-accent;
+  }
+}
+
+@keyframes back-to-top-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

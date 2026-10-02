@@ -1,0 +1,32 @@
+@use '../../styles/variables' as v;
+@use '../../styles/mixins' as m;
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: v.$sp-3;
+  padding: v.$sp-8 0;
+  color: v.$color-text-muted;
+}
+
+.loader__spinner {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid v.$color-border;
+  border-top-color: v.$color-accent;
+  animation: loader-spin 800ms linear infinite;
+  @include m.respect-motion;
+}
+
+.loader__label {
+  font-size: v.$fs-sm;
+}
+
+@keyframes loader-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
