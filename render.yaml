@@ -17,14 +17,8 @@ services:
       - key: DEBUG
         value: "False"
       - key: DATABASE_URL
-        fromDatabase:
-          name: netflix-clone-db
-          property: connectionString
+        sync: false
       # After deploying the frontend, set this to its URL (no trailing slash),
       # e.g. https://your-app.vercel.app
       - key: CORS_ALLOWED_ORIGINS
         value: http://localhost:5173
-
-databases:
-  # - name: netflix-clone-db
-    # plan: free
