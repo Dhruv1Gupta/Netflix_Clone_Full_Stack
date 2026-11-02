@@ -1,11 +1,11 @@
 # Render Blueprint: one-click deploy of the API (+ managed PostgreSQL).
 # Dashboard -> New -> Blueprint -> select this repo.
 services:
-  - type: web
-    name: netflix-clone-api
+  # - type: web
+    # name: netflix-clone-api
     runtime: python
     rootDir: backend
-    plan: free
+    # plan: free
     buildCommand: ./build.sh
     startCommand: gunicorn config.wsgi:application
     healthCheckPath: /api/health/
@@ -26,5 +26,5 @@ services:
         value: http://localhost:5173
 
 databases:
-  - name: netflix-clone-db
-    plan: free
+  # - name: netflix-clone-db
+    # plan: free
